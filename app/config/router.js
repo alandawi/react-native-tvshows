@@ -2,9 +2,9 @@ import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
-import Shows from '../screens/Shows';
-import Show from '../screens/Show';
-import Settings from '../screens/Settings';
+import Shows from '../components/Shows';
+import ShowDetail from '../components/ShowDetail';
+import Settings from '../components/Settings';
 
 export const ShowStack = StackNavigator({
   Shows: {
@@ -13,8 +13,8 @@ export const ShowStack = StackNavigator({
       title: 'All the shows',
     },
   },
-  Details: {
-    screen: Show,
+  ShowDetail: {
+    screen: ShowDetail,
     navigationOptions: ({ navigation }) => ({
       title: `${navigation.state.params.name.toUpperCase()}`,
     }),
