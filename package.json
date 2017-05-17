@@ -13,7 +13,9 @@
     "react-native-elements": "^0.9.7",
     "react-native-htmlview": "^0.9.0",
     "react-native-vector-icons": "^4.0.0",
-    "react-navigation": "^1.0.0-beta.9"
+    "react-navigation": "^1.0.0-beta.9",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "babel-jest": "20.0.1",

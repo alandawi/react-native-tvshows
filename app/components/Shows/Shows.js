@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import Styles from './style';
+import { connect } from 'react-redux';
 
 import { shows } from '../../config/data';
 
@@ -12,11 +13,27 @@ class Shows extends Component {
         this.props.navigation.navigate('ShowDetail', { ...show });
     };
 
+    getShows() {
+        const { shows } = this.props;
+        return showsData = shows.map((show, key) => {
+            console.log(show);
+            return <ListItem
+                key={show.id}
+                avatar={{ uri: show.image.medium }}
+                title={`${show.name.toUpperCase()}`}
+                subtitle={`Raiting: ${show.rating.average}`}
+                onPress={() => this.viewShow(show)}
+            />
+        })
+    }
+
     render() {
+        console.log(this.props);
         return (
 			<ScrollView>
 				<List>
-                    {shows.map((show) => (
+                    {this.getShows()}
+                    {/*{shows.map((show) => (
 						<ListItem
 							key={show.id}
 							avatar={{ uri: show.image.medium }}
@@ -24,11 +41,16 @@ class Shows extends Component {
 							subtitle={`Raiting: ${show.rating.average}`}
 							onPress={() => this.viewShow(show)}
 						/>
-                    ))}
+                    ))}*/}
 				</List>
 			</ScrollView>
         );
     }
 }
 
-export default Shows;
+const mapStateToProps = state => {
+  return { shows: state.allShows }
+};
+
+//export default Shows;
+export default connect(mapStateToProps)(Shows);

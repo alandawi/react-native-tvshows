@@ -25,6 +25,7 @@ class Settings extends Component {
 					<ListItem
 						title="Notifications"
 					/>
+
 					<ListItem
 						title="Profile"
 					/>
