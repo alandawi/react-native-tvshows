@@ -10,27 +10,13 @@ class ShowsList extends Component {
         this.props.navigation.navigate('ShowDetail', { ...show });
     };
 
-    getShows() {
-        const { shows } = this.props;
-        return showsData = shows.map((show, key) => {
-            console.log(show);
-            return <ListItem
-                key={show.id}
-                avatar={{ uri: show.image.medium }}
-                title={`${show.name.toUpperCase()}`}
-                subtitle={`Raiting: ${show.rating.average}`}
-                onPress={() => this.viewShow(show)}
-            />
-        })
-    }
-
     render() {
-        console.log("ShowsList", this.props);
+        //console.log("ShowsList", this.props);
+        const { shows } = this.props;
 
         return (
             <List>
-                {this.getShows()}
-                {/*{shows.map((show) => (
+                {shows.map((show) => (
                  <ListItem
                  key={show.id}
                  avatar={{ uri: show.image.medium }}
@@ -38,7 +24,7 @@ class ShowsList extends Component {
                  subtitle={`Raiting: ${show.rating.average}`}
                  onPress={() => this.viewShow(show)}
                  />
-                 ))}*/}
+                 ))}
             </List>
         );
     }

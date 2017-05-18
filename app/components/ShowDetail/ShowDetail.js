@@ -8,7 +8,7 @@ class ShowDetail extends Component {
     render() {
         const { id, image, language, name, premiered, runtime, rating, summary } = this.props.navigation.state.params;
 
-        console.log(this.props.navigation.state.params);
+        //console.log(this.props.navigation.state.params);
 
         return (
 			<ScrollView>

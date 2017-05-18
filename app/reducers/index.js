@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import allShowsReducer from './allShowsReducer';
+import showsReducer from './showsReducer';
+import usersReducer from './usersReducer';
 
 export default combineReducers({
-    allShows: allShowsReducer
+    allShows: showsReducer,
+    allUsers: usersReducer
 })
