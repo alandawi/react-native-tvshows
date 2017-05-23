@@ -18,17 +18,22 @@ class Shows extends Component {
 
     render() {
         console.log("Shows render:", this.props);
-        return (
-			<ScrollView>
-                {this.props.isFetching &&
+
+        if (this.props.isFetching) {
+            return (
                 <ActivityIndicator
                     animating={this.props.isFetching}
                     style={[Styles.centering, {height: 80}]}
                     size="large"
-                />}
-				<ShowsList {...this.props} />
-			</ScrollView>
-        );
+                />
+            );
+        } else {
+            return (
+                <ScrollView>
+                    <ShowsList {...this.props} />
+                </ScrollView>
+            );
+        }
     }
 }
 
