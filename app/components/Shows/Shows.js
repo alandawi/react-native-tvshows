@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ScrollView, ActivityIndicator } from 'react-native';
 import Styles from './style';
 import { connect } from 'react-redux';
-import { fetchShowsWithRedux } from '../../actions/showsActions';
+import { fetchShows } from '../../actions/showsActions';
 
 import ShowsList from '../ShowsList';
 
@@ -13,7 +13,7 @@ class Shows extends Component {
 
     componentDidMount() {
         console.info("componentDidMount");
-        this.props.fetchShowsWithRedux();
+        this.props.fetchShows();
     }
 
     render() {
@@ -41,4 +41,4 @@ const mapStateToProps = state => {
   return { shows: state.allShows.list, isFetching: state.allShows.isFetching }
 };
 
-export default connect(mapStateToProps, { fetchShowsWithRedux })(Shows);
+export default connect(mapStateToProps, { fetchShows })(Shows);
