@@ -1,7 +1,8 @@
 import { FETCH_REQUEST, FETCH_SUCCESS } from '../actions/showsActions';
 
 const initialState = {
-    list: []
+    list: [],
+    isFetching: true
 };
 
 export default function fetchShows(state = initialState, action) {
@@ -9,7 +10,7 @@ export default function fetchShows(state = initialState, action) {
         case FETCH_REQUEST:
             return state;
         case FETCH_SUCCESS:
-            return {...state, list: action.payload};
+            return {...state, list: action.payload, isFetching: false};
         default:
             return state;
     }

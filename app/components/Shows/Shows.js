@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, ActivityIndicator } from 'react-native';
 import Styles from './style';
 import { connect } from 'react-redux';
 import { fetchShowsWithRedux } from '../../actions/showsActions';
@@ -20,6 +20,12 @@ class Shows extends Component {
         console.log("Shows render:", this.props);
         return (
 			<ScrollView>
+                {this.props.isFetching &&
+                <ActivityIndicator
+                    animating={this.props.isFetching}
+                    style={[Styles.centering, {height: 80}]}
+                    size="large"
+                />}
 				<ShowsList {...this.props} />
 			</ScrollView>
         );
@@ -27,7 +33,7 @@ class Shows extends Component {
 }
 
 const mapStateToProps = state => {
-  return { shows: state.allShows.list }
+  return { shows: state.allShows.list, isFetching: state.allShows.isFetching }
 };
 
 export default connect(mapStateToProps, { fetchShowsWithRedux })(Shows);
