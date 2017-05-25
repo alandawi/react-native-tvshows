@@ -7,12 +7,7 @@ import { fetchShows } from '../../actions/showsActions';
 import ShowsList from '../ShowsList';
 
 class Shows extends Component {
-    componentWillMount() {
-        console.info("componentWillMount");
-    }
-
     componentDidMount() {
-        console.info("componentDidMount");
         this.props.fetchShows();
     }
 

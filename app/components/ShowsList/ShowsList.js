@@ -4,9 +4,9 @@ import { List, ListItem } from 'react-native-elements';
 import Styles from './style';
 
 class ShowsList extends Component {
-    // TODO: Read the data from the API and store with Redux
-
     viewShow = (show) => {
+        console.log("viewShow:", show.id);
+        // TODO: Need to pass the ID and then get the API
         this.props.navigation.navigate('ShowDetail', { ...show });
     };
 
@@ -18,11 +18,11 @@ class ShowsList extends Component {
             <List>
                 {shows.map((show) => (
                  <ListItem
-                 key={show.id}
-                 avatar={{ uri: show.image.medium }}
-                 title={`${show.name.toUpperCase()}`}
-                 subtitle={`Raiting: ${show.rating.average}`}
-                 onPress={() => this.viewShow(show)}
+                    key={show.id}
+                    avatar={{ uri: show.image.medium }}
+                    title={`${show.name.toUpperCase()}`}
+                    subtitle={`Raiting: ${show.rating.average}`}
+                    onPress={() => this.viewShow(show)}
                  />
                  ))}
             </List>

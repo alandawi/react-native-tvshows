@@ -1,16 +1,16 @@
-import { FETCH_REQUEST, FETCH_SUCCESS } from '../actions/showDetailActions';
+import { FETCH_DETAIL_REQUEST, FETCH_DETAIL_SUCCESS } from '../actions/showDetailActions';
 
 const initialState = {
-    list: [],
+    data: [],
     isFetching: true
 };
 
 export default function fetchShows(state = initialState, action) {
     switch (action.type) {
-        case FETCH_REQUEST:
+        case FETCH_DETAIL_REQUEST:
             return state;
-        case FETCH_SUCCESS:
-            return {...state, list: action.payload, isFetching: false};
+        case FETCH_DETAIL_SUCCESS:
+            return {...state, data: action.payload, isFetching: false};
         default:
             return state;
     }

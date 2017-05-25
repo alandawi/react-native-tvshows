@@ -1,46 +1,73 @@
 import React, { Component } from 'react';
 import HTMLView from 'react-native-htmlview';
-import { ScrollView } from 'react-native';
-import { Tile, List, ListItem } from 'react-native-elements';
+import { ScrollView, ActivityIndicator } from 'react-native';
+import { Tile, List, ListItem, Button } from 'react-native-elements';
 import Styles from './style';
+import { connect } from 'react-redux';
+import { fetchShowDetail } from '../../actions/showDetailActions';
 
 class ShowDetail extends Component {
+	componentDidMount() {
+		// TODO: Grab all the info of the show with different endpoints
+        this.props.fetchShowDetail(this.props.navigation.state.params.id);
+    }
+
     render() {
-        const { id, image, language, name, premiered, runtime, rating, summary } = this.props.navigation.state.params;
+		console.log("ShowDetail render:", this.props);
 
-        //console.log(this.props.navigation.state.params);
+		const show = this.props.show;
 
-        return (
-			<ScrollView>
-				<Tile
-					imageSrc={{ uri: image.medium}}
-					featured
-				/>
-
-				<HTMLView
-					value={summary}
-				/>
-
-				<List>
-					<ListItem
-						title="Language"
-						rightTitle={language}
-						hideChevron
+		if (this.props.isFetching) {
+            return (
+                <ActivityIndicator
+                    animating={this.props.isFetching}
+                    style={[Styles.centering, {height: 80}]}
+                    size="large"
+                />
+            );
+        } else {
+            return (
+                <ScrollView style={Styles.container}>
+					<Tile
+						imageSrc={{ uri: show.image.medium}}
+						featured
 					/>
-					<ListItem
-						title="Premiered"
-						rightTitle={premiered}
-						hideChevron
+
+					<HTMLView
+						value={show.summary}
 					/>
-					<ListItem
-						title="Rating"
-						rightTitle={rating.average}
-						hideChevron
-					/>
-				</List>
-			</ScrollView>
-        );
+
+					<List >
+						<ListItem
+							title="Language"
+							rightTitle={show.language}
+							hideChevron
+						/>
+						<ListItem
+							title="Premiered"
+							rightTitle={show.premiered}
+							hideChevron
+						/>
+						<ListItem
+							title="Rating"
+							rightTitle={show.rating.average}
+							hideChevron
+						/>
+					</List>
+
+					<Button
+					large
+					icon={{name: 'star'}}
+					buttonStyle={Styles.favorite}
+					title='Add to favorite' />
+				</ScrollView>
+            );
+        }
     }
 }
 
-export default ShowDetail;
+const mapStateToProps = state => {
+  return { show: state.showDetail.data, isFetching: state.showDetail.isFetching }
+};
+
+export default connect(mapStateToProps, { fetchShowDetail })(ShowDetail);
