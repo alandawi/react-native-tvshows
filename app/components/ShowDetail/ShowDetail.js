@@ -12,6 +12,11 @@ class ShowDetail extends Component {
         this.props.fetchShowDetail(this.props.navigation.state.params.id);
     }
 
+	addToFavorite() {
+		// TODO: Need to store the TVShow on the favorites state
+		console.log('addToFavorite');
+	}
+
     render() {
 		console.log("ShowDetail render:", this.props);
 
@@ -29,7 +34,7 @@ class ShowDetail extends Component {
             return (
                 <ScrollView style={Styles.container}>
 					<Tile
-						imageSrc={{ uri: show.image.medium}}
+						imageSrc={{ uri: show.image.original}}
 						featured
 					/>
 
@@ -37,7 +42,12 @@ class ShowDetail extends Component {
 						value={show.summary}
 					/>
 
-					<List >
+					<List>
+						<ListItem
+							title="Rating"
+							rightTitle={show.rating.average}
+							hideChevron
+						/>
 						<ListItem
 							title="Language"
 							rightTitle={show.language}
@@ -49,17 +59,23 @@ class ShowDetail extends Component {
 							hideChevron
 						/>
 						<ListItem
-							title="Rating"
-							rightTitle={show.rating.average}
+							title="Status"
+							rightTitle={show.status}
+							hideChevron
+						/>
+
+						<ListItem
+							title="Network"
+							rightTitle={show.network.name}
 							hideChevron
 						/>
 					</List>
 
 					<Button
-					large
 					icon={{name: 'star'}}
 					buttonStyle={Styles.favorite}
-					title='Add to favorite' />
+					title='Add to favorite'
+					onPress={ () => this.addToFavorite() } />
 				</ScrollView>
             );
         }
