@@ -4,46 +4,31 @@ import { List, ListItem, Button, CheckBox } from 'react-native-elements';
 import Styles from './style';
 
 class Settings extends Component {
-    constructor(props) {
-        super(props);
-
-        // TODO: Need to grab the data from the store
-        this.state = {
-        	checked: true
-        };
-
-        // Toggle the state every second
-        /*setInterval(() => {
-            this.setState({ showText: !this.state.showText });
-        }, 1000);*/
-    }
+	handleFavorites() {
+		console.log('handleFavorites');
+	}
 
     render() {
         return (
 			<View style={Styles.container}>
 				<List>
-					<ListItem
-						title="Notifications"
-					/>
-
-					<ListItem
-						title="Profile"
-					/>
-					<ListItem
-						title="Password"
-					/>
-
 					<CheckBox
-						right
-						title='Click Here'
-						checked={this.state.checked}
+						left
+						checked={true}
+						title='Enable favorites'
+						onPress={ () => this.handleFavorites()}
+					/>
+					<CheckBox
+						left
+						title='Enable notifications'
+						onPress={ () => this.handleFavorites()}
 					/>
 				</List>
 
 				<View style={Styles.buttonStyle}>
 					<Button
 						raised
-						icon={{name: 'done'}}
+						icon={{name: 'save'}}
 						title='Save settings'
 					/>
 				</View>
